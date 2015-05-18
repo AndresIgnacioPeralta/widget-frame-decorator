@@ -14,11 +14,13 @@ DecorationConfigurationWidget::DecorationConfigurationWidget(WindowDecorator *wi
     connect(ui->sliderBackgroundOpacity, &QSlider::valueChanged, this, &DecorationConfigurationWidget::onOpacitySliderChanged);
     ui->sliderBackgroundOpacity->setValue(100);
 
-    connect(ui->checkDropShadow, &QCheckBox::toggled, decorationWidget, &WindowDecorator::showShadow);
+    connect(ui->checkShadowOptions, &QGroupBox::toggled, decorationWidget, &WindowDecorator::showShadow);
     connect(ui->sliderBackgroundOpacity, &QSlider::valueChanged, decorationWidget, &WindowDecorator::setOpacity);
     connect(ui->buttonColorBackground, &QPushButton::clicked, this, &DecorationConfigurationWidget::onSelecBackgroundColorClicked);
     connect(ui->buttonColorBorder, &QPushButton::clicked, this, &DecorationConfigurationWidget::onSelecBorderColorClicked);
     connect(ui->buttonColorWidget, &QPushButton::clicked, this, &DecorationConfigurationWidget::onSelecWidgetColorClicked);
+    connect(ui->sliderShadowSpan, &QSlider::valueChanged, this, &DecorationConfigurationWidget::onShadowSpanSliderChanged);
+    connect(ui->sliderShadowSpan, &QSlider::valueChanged, decorationWidget, &WindowDecorator::setShadowWidth);
 
     setButtonColor(decorationWidget->getOrininalBackgroundColor(), ui->buttonColorBackground);
     setButtonColor(Qt::white, ui->buttonColorBorder);
@@ -72,4 +74,8 @@ void DecorationConfigurationWidget::onBackgroundColorSelected(const QColor color
 void DecorationConfigurationWidget::onWidgetColorSelected(const QColor color) {
     setButtonColor(color, ui->buttonColorWidget);
     decorationWidget->setWidgetColor(color);
+}
+
+void DecorationConfigurationWidget::onShadowSpanSliderChanged(const int value) {
+    ui->labelSpanValue->setText(QString::number(value) + "px");
 }

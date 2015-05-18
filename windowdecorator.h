@@ -27,6 +27,8 @@ public slots:
 
     void showShadow(const bool show);
 
+    void setShadowWidth(const int width);
+
 private:
     virtual bool eventFilter(QObject *object, QEvent *event);
 
@@ -34,7 +36,7 @@ private:
 
     void paintBorder();
 
-    void paintShadow(QPainter& painter);
+    void paintShadow(QPainter& painter, const QRect area);
 
     void applyDecoration();
 
@@ -48,6 +50,7 @@ private:
     QColor backgroundColor;
     QColor widgetColor;
     QColor borderColor;
+    int shadowWidth;
 
     QColor originalWidgetColor;
     QColor originqlBackgroundColor;

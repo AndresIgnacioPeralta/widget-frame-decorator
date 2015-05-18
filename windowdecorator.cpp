@@ -15,6 +15,7 @@ WindowDecorator::WindowDecorator(QWidget *widgetInstance):
     backgroundColor(QtWin::realColorizationColor()),
     widgetColor(widget->palette().color(QPalette::Background)),
     borderColor(QtWin::realColorizationColor()),
+    shadowWidth(3),
     drawShadow(true),
     originalWidgetColor(widgetColor),
     originqlBackgroundColor(backgroundColor)
@@ -59,6 +60,13 @@ void WindowDecorator::setOpacity(const int opacity) {
 
 void WindowDecorator::showShadow(const bool show) {
     drawShadow = show;
+    update();
+}
+
+void WindowDecorator::setShadowWidth(const int width) {
+    //QRect rectangle = containerWidget->rect();
+    containerWidget->setFixedSize(containerWidget->width() + width, containerWidget->height() + width);
+    shadowWidth = width;
     update();
 }
 
@@ -109,34 +117,32 @@ void WindowDecorator::paintBackground() {
 void WindowDecorator::paintBorder() {
     QPainter painter(containerWidget);
     painter.setRenderHint(QPainter::RenderHint::Antialiasing);
+    QRect widgetRect = containerWidget->rect();
+
     if(drawShadow) {
-        paintShadow(painter);
+        paintShadow(painter, widgetRect);
+        widgetRect.adjust(shadowWidth, shadowWidth, -shadowWidth, -shadowWidth);
     }
+    qDebug() << widgetRect;
     painter.setOpacity(opacityLevel);
     painter.setPen(QPen(backgroundColor));
     painter.setBrush(backgroundColor);
-    QRect widgetRect = containerWidget->rect();
-    widgetRect.adjust(3, 3, -3, -3);
     painter.drawRect(widgetRect);
     painter.end();
 }
 
-void WindowDecorator::paintShadow(QPainter &painter) {
-    int shadowThickness = 3;
+void WindowDecorator::paintShadow(QPainter &painter, const QRect area) {
     QLinearGradient gradient;
     gradient.setStart(0,0);
-    gradient.setFinalStop(containerWidget->width() ,0);
+    gradient.setFinalStop(area.width() ,0);
     QColor grey1(0, 0, 0, 100);
     QColor grey2(0, 0, 0, 50);
     gradient.setColorAt((qreal)0, grey1);
     gradient.setColorAt((qreal)1, grey2);
     QBrush brush(gradient);
-    painter.setBrush( brush);
+    painter.setBrush(brush);
     painter.setPen(Qt::NoPen);
-    QPointF topLeft(shadowThickness + 0, shadowThickness + 0);
-    QPointF bottomRight(containerWidget->width(), containerWidget->height());
-    QRectF rect(topLeft, bottomRight);
-    painter.drawRoundRect(rect, 2, 2);
+    painter.drawRoundRect(area, 2, 2);
 }
 
 void WindowDecorator::applyDecoration() {

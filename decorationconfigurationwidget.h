@@ -33,6 +33,7 @@ private slots:
     void onBorderColorSelected(const QColor color);
     void onBackgroundColorSelected(const QColor color);
     void onWidgetColorSelected(const QColor color);
+    void onShadowSpanSliderChanged(const int value);
 };
 
 #endif // DECORATIONCONFIGURATIONWIDGET_H
