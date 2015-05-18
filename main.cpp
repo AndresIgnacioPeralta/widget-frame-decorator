@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "windowdecorator.h"
-#include "skinmanager.h"
 #include <QApplication>
 #include "decorationconfigurationwidget.h"
 
