@@ -7,13 +7,9 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);    
     MainWindow w;
-
     WindowDecorator decorator(&w);
-
     DecorationConfigurationWidget configurationWIdget(&decorator);
-
     WindowDecorator decorator2(&configurationWIdget);
-
     configurationWIdget.show();
     w.show();
 

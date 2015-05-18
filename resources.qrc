@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/close-icon.png</file>
+        <file>resources/help-icon.png</file>
+        <file>resources/min-icon.png</file>
+        <file>resources/plus-icon.png</file>
+    </qresource>
+</RCC>

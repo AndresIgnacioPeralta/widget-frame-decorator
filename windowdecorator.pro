@@ -24,6 +24,8 @@ HEADERS  += mainwindow.h \
             containerframe.h \
             decorationconfigurationwidget.h
 
-FORMS    += mainwindow.ui \
-            containerframe.ui \
+FORMS    += containerframe.ui \
             decorationconfigurationwidget.ui
+
+RESOURCES += \
+    resources.qrc

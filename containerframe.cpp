@@ -33,7 +33,6 @@ void ContainerFrame::showControlBar(const bool show) {
     connect(buttonMinimize, &QPushButton::clicked, this, &ContainerFrame::onButtonMinimizeClicked);
     connect(buttonMaximize, &QPushButton::clicked, this, &ContainerFrame::onButtonMaximizeClicked);
     connect(buttonHelp,     &QPushButton::clicked, this, &ContainerFrame::onButtonHelpClicked);
-    connect(buttonOnTop,    &QPushButton::clicked, this, &ContainerFrame::onButtonOnTopClicked);
     connect(buttonClose,    &QPushButton::clicked, this, &ContainerFrame::onButtonCloseClicked);
 }
 
@@ -76,4 +75,7 @@ void ContainerFrame::updateBorderWidth() {
     setFixedSize(containedWidget->width() + 2 * borderWidth + 10 + 10 ,
                  containedWidget->height() + TOP_BAR_HEIGHT + borderWidth);
     mainLayout->setContentsMargins(borderWidth, 0, borderWidth, borderWidth);
+}
+
+void ContainerFrame::setTopBarIcons() {
 }
