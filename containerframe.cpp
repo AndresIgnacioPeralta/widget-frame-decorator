@@ -21,6 +21,7 @@ ContainerFrame::ContainerFrame(QWidget* contained, QWidget* const parent) :
     updateBorderWidth();
     showControlBar(true);
     labelTitle->setText(contained->windowTitle());
+    setTopBarIcons(Qt::white);
 }
 
 void ContainerFrame::setBorderWidth(const unsigned int width) {
@@ -77,5 +78,13 @@ void ContainerFrame::updateBorderWidth() {
     mainLayout->setContentsMargins(borderWidth, 0, borderWidth, borderWidth);
 }
 
-void ContainerFrame::setTopBarIcons() {
+void ContainerFrame::setTopBarIcons(const QColor color) {
+    QPalette textPalette = labelTitle->palette();
+    textPalette.setColor(labelTitle->foregroundRole(), color);
+    labelTitle->setPalette(textPalette);
+    labelTitle->update();
+    QFont font;
+    font.setBold(true);
+    font.setFamily("Segoe UI");
+    labelTitle->setFont(font);
 }

@@ -39,7 +39,7 @@ private slots:
 
 private:
     void updateBorderWidth();
-    void setTopBarIcons();
+    void setTopBarIcons(const QColor color);
 
     QWidget* containedWidget;
     unsigned int borderWidth;
