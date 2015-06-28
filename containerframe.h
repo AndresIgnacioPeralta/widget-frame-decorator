@@ -19,7 +19,7 @@ enum class ToolBarItem {
     CLOSE
 };
 
-typedef QMap<ToolBarItem, bool> TopBarConfiguration;
+typedef QMap<ToolBarItem, QWidget> TopBarConfiguration;
 
 class ContainerFrame : public QFrame, public Ui::ContainerWidgetClass {
     Q_OBJECT
@@ -44,6 +44,7 @@ private:
     QWidget* containedWidget;
     unsigned int borderWidth;
     bool hasTopBar;
+    TopBarConfiguration topbarConfiguration;
 };
 
 #endif // CONTAINERFRAME_H

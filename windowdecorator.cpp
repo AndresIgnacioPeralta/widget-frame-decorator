@@ -48,7 +48,9 @@ void WindowDecorator::setBoderColor(const QColor color) {
 }
 
 void WindowDecorator::showToolBar(const bool show) {
-
+    containerWidget->topBar->setVisible(show);
+    containerWidget->setFixedHeight(show ? containerWidget->height() + 30 : containerWidget->height() - 30);
+    update();
 }
 
 void WindowDecorator::setOpacity(const int opacity) {
@@ -123,7 +125,6 @@ void WindowDecorator::paintBorder() {
         paintShadow(painter, widgetRect);
         widgetRect.adjust(shadowWidth, shadowWidth, -shadowWidth, -shadowWidth);
     }
-    qDebug() << widgetRect;
     painter.setOpacity(opacityLevel);
     painter.setPen(QPen(backgroundColor));
     painter.setBrush(backgroundColor);

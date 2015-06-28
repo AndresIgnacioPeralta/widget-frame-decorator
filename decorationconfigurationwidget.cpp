@@ -15,6 +15,8 @@ DecorationConfigurationWidget::DecorationConfigurationWidget(WindowDecorator *wi
     ui->sliderBackgroundOpacity->setValue(100);
 
     connect(ui->checkShadowOptions, &QGroupBox::toggled, decorationWidget, &WindowDecorator::showShadow);
+    connect(ui->checkTopBar, &QGroupBox::toggled, decorationWidget, &WindowDecorator::showToolBar);
+
     connect(ui->sliderBackgroundOpacity, &QSlider::valueChanged, decorationWidget, &WindowDecorator::setOpacity);
     connect(ui->buttonColorBackground, &QPushButton::clicked, this, &DecorationConfigurationWidget::onSelecBackgroundColorClicked);
     connect(ui->buttonColorBorder, &QPushButton::clicked, this, &DecorationConfigurationWidget::onSelecBorderColorClicked);

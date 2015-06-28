@@ -46,7 +46,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupToolbar">
+    <widget class="QGroupBox" name="checkTopBar">
      <property name="title">
       <string>Topbar</string>
      </property>

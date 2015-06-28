@@ -74,8 +74,8 @@ void ContainerFrame::onButtonCloseClicked() {
 
 void ContainerFrame::updateBorderWidth() {
     setFixedSize(containedWidget->width() + 2 * borderWidth + 10 + 10 ,
-                 containedWidget->height() + TOP_BAR_HEIGHT + borderWidth);
-    mainLayout->setContentsMargins(borderWidth, 0, borderWidth, borderWidth);
+                 containedWidget->height() + TOP_BAR_HEIGHT + borderWidth + 10);
+    mainLayout->setContentsMargins(borderWidth, borderWidth, borderWidth, borderWidth);
 }
 
 void ContainerFrame::setTopBarIcons(const QColor color) {
